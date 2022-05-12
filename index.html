@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>reCAPTCHA demo: Simple page</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body>
+    <form
+      name="TestForm"
+      id="Test"
+      method="POST"
+      action="" 
+      onsubmit="AppendQueryString(this)"     
+    >
+      <input hidden name="formName" id="formName" value="SimonHtmlFormTest" />
+      <input
+        hidden
+        name="redirectUrl"
+        id="redirectUrl"
+        value="https://www.google.com/"
+      />
+
+      First Name<br />
+      <input type="text" name="FirstName" id="FirstName" />
+      <br />
+      Last Name<br />
+      <input type="text" name="LastName" id="LastName" /><br />
+
+      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+      <br /><br />
+      <input type="submit" value="Let's Go!" />
+  <script>
+    function AppendQueryString(form) {
+      const queryString = window.location.search;
+
+      document.getElementById("redirectUrl").value += queryString;
+
+      let formAction = form.action;
+      if (formAction.includes("?")) form.action = formAction + "&" + queryString.substring(1);
+      else form.action = formAction + queryString;
+    }
+
+    // function data-callback
+  </script>
+    </form>
+  </body>
+</html>
